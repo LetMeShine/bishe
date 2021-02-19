@@ -1,34 +1,86 @@
 <template>
-  <div class="hello">
-      <h1>登录</h1>
-      <el-button type="primary" @click="login">登录</el-button>
+  <div class="login">
+      <h1>信贷管理系统</h1>
+      <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-loginForm">
+          <el-form-item label="用户名" prop="account">
+              <el-input type="text" v-model="loginForm.account" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+              <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item>
+              <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+          </el-form-item>
+      </el-form>
   </div>
 </template>
 
 <script>
+import {login } from '@/api/login'
+import {setToken} from "../utils/token";
 export default {
-  methods:{
-      login(){
-          this.$router.push('./home');
-      }
-  }
+    name:'login',
+    data() {
+        return {
+            // 登录的数据对象
+            loginForm: {
+                password: '',
+                account: '',
+            },
+            // 登录的校验规则
+            rules: {
+                password: [
+                    { validator: this.validLogin, trigger: 'blur' }
+                ],
+                account: [
+                    { validator: this.validLogin, trigger: 'blur' }
+                ]
+            }
+        };
+    },
+    methods:{
+        /**
+         * @description 点击登录
+         * @example submitForm('loginForm')
+         * @param formName 表单的对象
+         */
+        submitForm(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    login(this.loginForm).then((res) => {
+                        let {code,data} = res.data;
+                        if(code === 20000){
+                            let token = data.token;
+                            // token缓存
+                            token && setToken(token);
+                            this.$router.push('./home');
+                        }
+                    })
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        },
+        /**
+         * @description 校验方法
+         * @method validLogin
+         * @example validLogin
+         */
+        validLogin(rule, value, callback){
+            let info = rule.field === 'account' ? '请输入用户名' : '请输入密码';
+            value === '' ? callback(new Error(info)) : callback();
+        },
+    }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!--样式添加scoped当时前设置的样式不全局污染-->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+    .login {
+        width: 35%;
+        height: 100%;
+        margin: 0 auto;
+        padding-top: 200px;
+    }
 </style>

@@ -20,19 +20,22 @@
                 <span slot="title">申请管理</span>
             </el-menu-item>
 
+            <!--有子级-->
             <el-submenu index="/loan-approve">
                 <template slot="title">
                     <i class="el-icon-s-claim"></i>
                     <span>贷款审批</span>
                 </template>
                 <el-menu-item index="/first">初审</el-menu-item>
-                <el-menu-item index="/second">复审</el-menu-item>
                 <el-menu-item index="/end">终审</el-menu-item>
             </el-submenu>
+
             <el-menu-item index="/contract-manager">
                 <i class="el-icon-s-finance"></i>
                 <span slot="title">标的管理</span>
             </el-menu-item>
+
+            <!--有子级-->
             <el-submenu index="/permission">
                 <template slot="title">
                     <i class="el-icon-setting"></i>
@@ -41,7 +44,6 @@
                 <el-menu-item index="/create">创建用户</el-menu-item>
                 <el-menu-item index="/userList">用户列表</el-menu-item>
             </el-submenu>
-
         </el-menu>
     </el-aside>
 </template>

@@ -223,7 +223,7 @@
 </template>
 
 <script>
-    import {loanCreate} from '@/api/login'
+    import {loanCreate} from '@/api/http'
     import {sexOptions, companyOptions, marriageOptions, educationOptions} from '@/utils/selectData'
 
     export default {

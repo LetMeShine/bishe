@@ -1,5 +1,6 @@
 <template>
     <el-main>
+        <!--二级路由-->
         <router-view />
     </el-main>
 </template>
@@ -11,9 +12,6 @@
 
 <style scoped>
     .el-main {
-        background-color: #E9EEF3;
         color: #333;
-        text-align: center;
-        line-height: 160px;
     }
 </style>

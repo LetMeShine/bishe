@@ -1,28 +1,23 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vuex from 'vuex'
+Vue.use(Vuex);
+import user from './modules/user'
+const state = {
 
-Vue.use(VueRouter);
+}
+const mutations = {
 
-const  routes = [
-    {
-        path: '/',
-        redirect: '/home'
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: ()=> import('../views/Login.vue')
-    },
-    {
-        path: '/home',
-        name: 'home',
-        component: ()=> import('../layout/index.vue')
-    },
+}
+const actions = {
 
-]
-
-const router = new VueRouter({
-    routes
-})
-
+}
+const modules = {
+    user,
+}
+const router = new Vuex.Store({
+    state,
+    mutations,
+    actions,
+    modules
+});
 export default router

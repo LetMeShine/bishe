@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {login } from '@/api/login'
+import {login } from '@/api/http'
 import {setToken} from "../utils/token";
 export default {
     name:'login',
@@ -29,12 +29,14 @@ export default {
             },
             // 登录的校验规则
             rules: {
-                password: [
-                    { validator: this.validLogin, trigger: 'blur' }
-                ],
                 account: [
-                    { validator: this.validLogin, trigger: 'blur' }
-                ]
+                    { validator: this.validLogin, trigger: 'blur' },
+                    { min: 3, max: 18, message: '长度在 3 到 18 个字符', trigger: 'blur' }
+                ],
+                password: [
+                    { validator: this.validLogin, trigger: 'blur' },
+                    { min: 3, max: 18, message: '长度在 3 到 18 个字符', trigger: 'blur' }
+                ],
             }
         };
     },

@@ -160,7 +160,6 @@
                 xhr.setRequestHeader('token', getToken());
                 xhr.onload = () => {
                     if (xhr.status == 200) {
-                        console.log(xhr.response);
                         var filename = xhr.responseURL.substring(xhr.responseURL.lastIndexOf("/") + 1);
                         this.saveAs(filename, xhr.response)
                     }

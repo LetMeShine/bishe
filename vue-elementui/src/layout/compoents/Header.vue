@@ -7,12 +7,12 @@
             </el-breadcrumb-item>
         </el-breadcrumb>
 
-        <el-dropdown>
+        <el-dropdown @command="goBack">
             <span class="el-dropdown-link">
             退出<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click="goBack">退出</el-dropdown-item>
+                <el-dropdown-item>退出</el-dropdown-item>
                 <!--<el-dropdown-item disabled>双皮奶</el-dropdown-item>-->
                 <!--<el-dropdown-item divided>蚵仔煎</el-dropdown-item>-->
             </el-dropdown-menu>
@@ -42,6 +42,7 @@
              * @description 退出登录
              */
             goBack() {
+                console.log(123123)
                 logout().then(res => {
                     let {code} = res.data;
                     if (code == 20000) {
@@ -53,8 +54,7 @@
             }
         },
         watch: {
-            $route(to, from) {
-                console.log(to, from);
+            $route() {
                 this.getBreadcrumb();
             }
         },
@@ -76,6 +76,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        box-shadow: 0 3px 3px #ccc;
     }
 
     .el-dropdown-link {

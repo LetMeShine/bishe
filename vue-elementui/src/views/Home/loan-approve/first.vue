@@ -215,7 +215,6 @@
                 loanQuery({id: row.loan_id}).then(res => {
                     this.dialogDetailsVisible = true; //通过弹层的显示
                     var {code} = res.data;
-                    console.log(code);
                     if (code == '20000') {
                         this.temp = res.data.data.data;  //获取展示的数据
                     }

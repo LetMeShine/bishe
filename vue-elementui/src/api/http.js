@@ -14,6 +14,7 @@ export function userInfo(){   //用户详情
     })
 }
 export function logout() { //退出
+    console.log(1212);
     return axios({
         method: 'post',
         url: '/user/logout',

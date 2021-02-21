@@ -17,7 +17,8 @@ router.beforeEach(async (to, from, next) => {
             //取出角色
             let rolesName= roles.map(v=>v.name);
             //过滤角色
-            let filterRoutes = await store.dispatch('GENERATEROUTES',rolesName);
+            let filterRoutes = await store.dispatch('generateroutes',rolesName);
+            console.log(roles,rolesName,filterRoutes,123)
             //动态添加
             router.addRoutes(filterRoutes);
             if (roles) {

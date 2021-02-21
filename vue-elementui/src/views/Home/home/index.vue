@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div>
         <PanelProup/>
         <!--<my-banner :items="imgs"></my-banner>-->
         <LineChart/>
@@ -31,9 +31,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .home {
-        background-color: #e5e9f2;
-    }
     .el-row {
         margin-bottom: 20px;
         &:last-child {

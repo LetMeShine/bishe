@@ -9,14 +9,14 @@ function filterAsyncRouter(routes, name) {  //过滤角色
 
 const state = {
     routes: []  //动态路由
-};
+}
 const getters = {
     get_routes: state => state.routes,
-};
+}
 const actions = {
-    GENERATEROUTES({commit, state}, rolesName) {   //通过角色来过滤路由
+    generateroutes({commit}, rolesName) {   //通过角色来过滤路由
         return new Promise((resolve) => {
-            let _routes; //
+            let _routes;
             let home = constantRoutes.filter(v => v.path == '/home')[0];   //
             home.children = []; //清除
             if (rolesName.includes('administrator')) {  //是否是管理员
@@ -25,14 +25,12 @@ const actions = {
                 let filterRouter = filterAsyncRouter(asyncRoutes, rolesName);
                 home.children = filterRouter;
             }
-            ;
             _routes = [home] || [];
-            console.log('routers' + _routes);
             commit('SET_ROUTES', _routes);
             resolve(_routes)
         })
-    },
-};
+    }
+}
 const mutations = {
     SET_ROUTES: (state, routes) => {
         state.routes = routes;

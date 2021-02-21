@@ -351,12 +351,10 @@
         methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
-                    console.log(valid);
                     if (valid) {
                         //校验成功
                         loanCreate(this.temp).then(res => {
-                            console.log(res);
-
+                            console.log(res)
                             this.$router.push('/input-manager');  //跳转到申请管理
                             this.$notify({
                                 title: '成功',

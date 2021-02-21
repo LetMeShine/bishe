@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {userInfo,logout} from '@/api/http'
+import {userInfo} from '@/api/http'
 Vue.use(Vuex)
 
 const state = {
@@ -29,7 +29,6 @@ const actions = {
     user({commit}){
         return new Promise((resolve,reject)=>{
             userInfo().then(res=>{
-                console.log(res);
                 let {data} = res.data;
                 commit('SETROLES',data.roles)
                 resolve(data);
@@ -39,16 +38,16 @@ const actions = {
         })
     },
     // user logout
-    logout({ commit}) {
-        return new Promise((resolve, reject) => {
-            logout().then(() => {
-                commit('SETROLES', [])
-                resolve()
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    }
+    // logout({ commit}) {
+    //     return new Promise((resolve, reject) => {
+    //         logout().then(() => {
+    //             commit('SETROLES', [])
+    //             resolve()
+    //         }).catch(error => {
+    //             reject(error)
+    //         })
+    //     })
+    // }
 }
 export default {
     state,

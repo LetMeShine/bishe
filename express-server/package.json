@@ -1,0 +1,24 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env PORT=52996 babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LetMeShine/bishe.git"
+  },
+  "author": "wht",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "winston": "^3.3.3"
+  }
+}

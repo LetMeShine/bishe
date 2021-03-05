@@ -2,7 +2,7 @@
     <div class="app-container">
         <div class="filter-container">
         </div>
-        <el-form ref="temp" :rules="rules" :model="temp" label-position="left" label-width="80px">
+        <el-form ref="temp" :rules="rules" :model="temp" label-position="center" label-width="108px">
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
                     <span>个人基本信息</span>
@@ -83,7 +83,7 @@
                 <div slot="header" class="clearfix">
                     <span>职业信息</span>
                 </div>
-                <el-row :gutter="10">
+                <el-row>
                     <el-col :xs="24" :sm="12" :md="6" :lg="6">
                         <el-form-item label="现职公司全称" prop="company">
                             <el-input v-model="temp.company"/>
@@ -205,7 +205,7 @@
                 <el-row :gutter="10">
                     <el-col :xs="24" :sm="12" :md="8" :lg="8">
                         <el-form-item label="备注">
-                            <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea"
+                            <el-input v-model="temp.remark" maxlength="300" resize="none" :autosize="{ minRows: 2, maxRows: 4}" type="textarea"
                                       placeholder="请输入备注信息"/>
                         </el-form-item>
                     </el-col>
@@ -378,5 +378,10 @@
 <style>
     .box-card {
         margin-bottom: 15px;
+    }
+    .dialog-footer {
+        width: 100%;
+        height: 100%;
+        text-align: center;
     }
 </style>

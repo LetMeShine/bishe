@@ -1,5 +1,5 @@
 <template>
-    <div  ref="map" style="width: 480px;height:400px; margin: 40px 0; background-color: rgb(226,202,204);"></div>
+    <div  ref="map"  class="map"></div>
 </template>
 
 <script>
@@ -24,5 +24,11 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .map {
+        width: 480px;
+        height:400px;
+        margin: 40px 0;
+        background-color: rgb(226,202,204);
+        padding: 20px;
+    }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div ref="chart" style="width: 100%;height: 400px; background-color:rgb(199,228,219);"></div>
+    <div ref="chart" class="chart"></div>
 </template>
 
 <script>
@@ -30,5 +30,9 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .chart {
+        width: 100%;
+        height: 400px;
+        background-color:rgb(199,228,219);
+    }
 </style>

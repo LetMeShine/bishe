@@ -1,18 +1,20 @@
 <template>
-  <div class="login">
-      <h1>信贷管理系统</h1>
-      <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-loginForm">
-          <el-form-item label="用户名" prop="account">
-              <el-input type="text" v-model="loginForm.account" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item>
-              <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-          </el-form-item>
-      </el-form>
-  </div>
+    <div class="wapper">
+        <div class="login">
+            <h1>信贷管理系统</h1>
+            <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-loginForm">
+                <el-form-item label="用户名" prop="account">
+                    <el-input type="text" v-model="loginForm.account" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -79,10 +81,17 @@ export default {
 
 <!--样式添加scoped当时前设置的样式不全局污染-->
 <style scoped>
+    .wapper {
+        width: 100%;
+        height: 100%;
+        background: url("../img/bg.png") no-repeat;
+    }
     .login {
         width: 35%;
         height: 100%;
         margin: 0 auto;
         padding-top: 200px;
+        text-align: center;
     }
+
 </style>

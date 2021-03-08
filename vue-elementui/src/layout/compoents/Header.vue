@@ -42,7 +42,6 @@
              * @description 退出登录
              */
             goBack() {
-                console.log(123123)
                 logout().then(res => {
                     let {code} = res.data;
                     if (code == 20000) {

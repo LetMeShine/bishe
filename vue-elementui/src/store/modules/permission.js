@@ -1,6 +1,16 @@
+/**
+ * @fileoverview 根据权限展示路由
+ */
 import {constantRoutes, asyncRoutes} from '@/router'
 
-function filterAsyncRouter(routes, name) {  //过滤角色
+/**
+ * @description 过滤角色
+ * 
+ * @param {Array} routes 路由集合
+ * @param {Array} name 过滤的姓名集合
+ * @returns {Array} 过滤后的路由
+ */
+function filterAsyncRouter(routes, name) {
     let data = routes.filter(route => {
         return route.meta && route.meta.roles && name.some(v => route.meta.roles.includes(v))
     })
@@ -14,7 +24,13 @@ const getters = {
     get_routes: state => state.routes,
 }
 const actions = {
-    generateroutes({commit}, rolesName) {   //通过角色来过滤路由
+    /**
+     * @description 通过角色来过滤路由
+     * 
+     * @param {String} rolesName 角色姓名
+     * @returns {Array} 过滤后的路由
+     */
+    generateroutes({commit}, rolesName) {
         return new Promise((resolve) => {
             let _routes;
             let home = constantRoutes.filter(v => v.path == '/home')[0];   //
@@ -32,6 +48,12 @@ const actions = {
     }
 }
 const mutations = {
+    /**
+     * @description 更新路由
+     * 
+     * @param {*} state 
+     * @param {*} routes 
+     */
     SET_ROUTES: (state, routes) => {
         state.routes = routes;
     }

@@ -1,27 +1,53 @@
+/**
+ * @fileoverview 接口
+ */
 import axios from '@/utils/axios'
 
-export function login(data) { //登录
+/**
+ * @description 登录
+ * 
+ * @param {Object} data 用户登录的信息
+ * @returns {promise} 接口返回的结果
+ */
+export function login(data) {
     return axios({
         method: 'post',
         url: '/user/login',
         data: data
     })
 }
-export function userInfo(){   //用户详情
+
+/**
+ * @description 用户详情
+ * 
+ * @returns {promise} 接口返回的结果
+ */
+export function userInfo(){
     return axios ({
         method:'get',
         url:`user/info`,
     })
 }
+
+/**
+ * @description 退出登录
+ * 
+ * @returns {promise} 接口返回的结果
+ */
 export function logout() { //退出
-    console.log(1212);
     return axios({
         method: 'post',
         url: '/user/logout',
     })
 }
 
-export function loanCreate(data) {   //贷款申请  提交
+/**
+ * @description 贷款申请-提交
+ * 
+ * @param {Object} data 提交的数据
+ * @returns {promise}
+ */
+export function loanCreate(data) {   //
     return axios({
         method: 'post',
         url: `loan/create`,
@@ -29,7 +55,13 @@ export function loanCreate(data) {   //贷款申请  提交
     })
 }
 
-export function loanList(data) {   //申请管理-查询
+/**
+ * @description 申请管理-查询
+ * 
+ * @param {Object} data 查询条件
+ * @returns {promise} 接口返回的结果
+ */
+export function loanList(data) {   //
     return axios({
         method: 'get',
         url: `loan/list`,
@@ -37,7 +69,12 @@ export function loanList(data) {   //申请管理-查询
     })
 }
 
-//申请管理 -提交
+/**
+ * @description 申请管理 -提交
+ * 
+ * @param {Object} data id
+ * @returns {promise} 接口返回的结果
+ */
 export function submitToApprove(data) {
     return axios({
         method: 'post',
@@ -46,15 +83,25 @@ export function submitToApprove(data) {
     })
 }
 
-//申请管理 -删除
-export function loanDelete(data) {
+/**
+ * @description 申请管理 -删除
+ * 
+ * @param {Object} data id
+ * @returns {promise} 接口返回的结果
+ */
+export function loanDelete(id) {
     return axios({
         method: 'delete',
-        url: 'loan/delete/' + data.id,
+        url: 'loan/delete/' + id,
     })
 }
 
-//申请管理 -编辑
+/**
+ * @description 申请管理 -编辑
+ * 
+ * @param {Object} data 编辑的对象
+ * @returns {promise} 接口返回的结果
+ */
 export function loanUpdate(data) {
     return axios({
         method: 'put',
@@ -63,8 +110,13 @@ export function loanUpdate(data) {
     })
 }
 
-//初审
-export function approveFirstList(data) {  //贷款审批-初审-列表数据
+/**
+ * @description 贷款审批-初审-列表数据
+ * 
+ * @param {Object} data 查询条件
+ * @returns {promise} 接口返回的结果
+ */
+export function approveFirstList(data) {
     return axios({
         url: 'approve/first/list',
         method: 'get',
@@ -72,8 +124,13 @@ export function approveFirstList(data) {  //贷款审批-初审-列表数据
     })
 }
 
-///loan/query/:id   通过ID查询列表详情
-export function loanQuery(data) {  //贷款审批-初审-列表详情
+/**
+ * @description 贷款审批-初审-列表详情
+ * 
+ * @param {Object} data id
+ * @returns {promise} 接口返回的结果
+ */
+export function loanQuery(data) {
     return axios({
         url: 'loan/query',
         method: 'get',
@@ -81,7 +138,13 @@ export function loanQuery(data) {  //贷款审批-初审-列表详情
     })
 }
 
-export function approveFirstPass(data) {  //贷款审批-初审-通过
+/**
+ * @description 贷款审批-初审-通过
+ * 
+ * @param {Object} data 申请id和贷款id
+ * @returns {promise} 接口返回的结果
+ */
+export function approveFirstPass(data) {  //
     return axios({
         url: 'approve/first/pass',
         method: 'post',
@@ -89,7 +152,13 @@ export function approveFirstPass(data) {  //贷款审批-初审-通过
     })
 }
 
-export function approveFirstReject(data) {  //贷款审批-初审-拒绝
+/**
+ * @description 贷款审批-初审-拒绝
+ * 
+ * @param {Object} data 申请id和贷款id
+ * @returns {promise} 接口返回的结果
+ */
+export function approveFirstReject(data) {
     return axios({
         url: 'approve/first/reject',
         method: 'post',
@@ -97,8 +166,13 @@ export function approveFirstReject(data) {  //贷款审批-初审-拒绝
     })
 }
 
-//终审
-export function approveEndList(data) {  //贷款审批-初审-列表数据
+/**
+ * @description 贷款审批-终审-列表数据
+ * 
+ * @param {Object} data 查询条件
+ * @returns {promise} 终审列表
+ */
+export function approveEndList(data) {
     return axios({
         url: 'approve/end/list',
         method: 'get',
@@ -106,7 +180,13 @@ export function approveEndList(data) {  //贷款审批-初审-列表数据
     })
 }
 
-export function approveEndPass(data) {  //贷款审批-初审-通过
+/**
+ * @description 贷款审批-终审-通过
+ * 
+ * @param {Object} data 申请id和贷款id
+ * @returns {promise} 接口返回的结果
+ */
+export function approveEndPass(data) {  //
     return axios({
         url: 'approve/end/pass',
         method: 'post',
@@ -114,7 +194,13 @@ export function approveEndPass(data) {  //贷款审批-初审-通过
     })
 }
 
-export function approveEndReject(data) {  //贷款审批-初审-拒绝
+/**
+ * @description 贷款审批-终审-拒绝
+ * 
+ * @param {Object} data 申请id和贷款id
+ * @returns {promise}
+ */
+export function approveEndReject(data) {
     return axios({
         url: 'approve/end/reject',
         method: 'post',
@@ -122,7 +208,12 @@ export function approveEndReject(data) {  //贷款审批-初审-拒绝
     })
 }
 
-//标的管理-获取数据
+/**
+ * @description 标的管理-获取数据
+ * 
+ * @param {Object} data 查询的信息
+ * @returns {promise} 合同列表
+ */
 export function contractList(data){
     return axios({
         method:'get',
@@ -130,7 +221,13 @@ export function contractList(data){
         params:data
     })
 }
-//标的管理-生成合同
+
+/**
+ * @description 标的管理-生成合同
+ * 
+ * @param {Object} data id
+ * @returns {promise} 合同信息
+ */
 export function contractCreateFile(data){
     return axios({
         method:'post',
@@ -138,11 +235,43 @@ export function contractCreateFile(data){
         data
     })
 }
-//标的管理-下载合同
+
+/**
+ * @description 标的管理-下载合同
+ * 
+ * @param {Object} data 合同id
+ * @returns {promise} 合同下载的地址
+ */
 export function contractDownload(data){
     return axios({
         method:'get',
         url:'contract/download',
         params:data
+    })
+}
+
+/**
+ * @description 权限管理-创建用户
+ * 
+ * @param {Object} data 创建的用户的信息
+ * @returns {promise} 接口返回的结果
+ */
+export function createUser(data){
+    return axios({
+        method:'post',
+        url:'permission/createUser',
+        params:data
+    })
+}
+
+/**
+ * @description 权限管理-列表展示
+ * 
+ * @returns {promise} 接口返回的结果
+ */
+export function userList(){
+    return axios({
+        method:'get',
+        url:'user/list',
     })
 }

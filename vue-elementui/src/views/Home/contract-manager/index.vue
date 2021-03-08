@@ -97,7 +97,10 @@
             this.getList();
         },
         methods: {
-            getList() {  //获取数据
+            /**
+             * @description 获取合同数据列表
+             */
+            getList() {
                 contractList(this.listQuery).then(res => {
                     let {code} = res.data;
                     if (code == '20000') {
@@ -108,20 +111,31 @@
                     }
                 })
             },
-            query() { //按名称查询
+            /**
+             * @description 按名称查询
+             */
+            query() {
                 this.getList();
             },
-            //当前条数变化
+            /**
+             * @description 当前条数变化
+             */
             handleSizeChange(val = this.listQuery.pageSize) {
                 this.listQuery.pageSize = val;
                 this.getList();
             },
-            //当前页变化
+            /**
+             * @description 当前页变化
+             */
             handleCurrentChange(val = this.listQuery.pageNo) {
                 this.listQuery.pageNo = val;
                 this.getList();
             },
-            //生成合同
+            /**
+             * @description 生成合同
+             * 
+             * @param {Object} row 当前行数据
+             */
             handleCreate(row) {
                 contractCreateFile({id: row.id}).then(res => {
                     let {code} = res.data;
@@ -136,7 +150,11 @@
                     }
                 })
             },
-            //下载合同
+            /**
+             * @description 下载合同
+             * 
+             * @param {Object} row 当前行数据
+             */
             handleDownload(row) {
                 contractDownload({id: row.id}).then(res => {
                     let {code, data} = res.data;
@@ -147,30 +165,40 @@
                             type: 'success',
                             duration: 2000
                         });
-                        //http://139.196.42.209:5004/static/1609315607627.docx
-                        var _url = 'http://139.196.42.209:5004' + data.url;
+                        let _url = 'http://139.196.42.209:5004' + data.url;
                         this.downloadFile(_url);
                     }
                 })
             },
+            /**
+             * @description 根据url下载合同
+             * 
+             * @param {String} url 合同地址
+             */
             downloadFile(url) {
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
                 xhr.open('get', url);
                 xhr.responseType = "blob"; //字节流
                 xhr.setRequestHeader('token', getToken());
                 xhr.onload = () => {
                     if (xhr.status == 200) {
-                        var filename = xhr.responseURL.substring(xhr.responseURL.lastIndexOf("/") + 1);
+                        let filename = xhr.responseURL.substring(xhr.responseURL.lastIndexOf("/") + 1);
                         this.saveAs(filename, xhr.response)
                     }
                 };
                 xhr.send();
             },
+            /**
+             * @description 保存数据流文件
+             * 
+             * @param {String} name 文件名
+             * @param {Object} data 文件流
+             */
             saveAs(name, data) {
-                var urlObject = window.URL;  //window对象的URL对象是专门用来将blob或者file读取成一个url的。
-                var export_blob = new Blob([data]); //代表二进制类型的大对象,Blob对象是二进制数据
+                let urlObject = window.URL;  //window对象的URL对象是专门用来将blob或者file读取成一个url的。
+                let export_blob = new Blob([data]); //代表二进制类型的大对象,Blob对象是二进制数据
                 // <a href="12345.jpg" download="名称" >
-                var save_link = document.createElement('a');//创建a标签
+                let save_link = document.createElement('a');//创建a标签
                 save_link.href = urlObject.createObjectURL(export_blob); //通过URL.createObjectURL(blob)可以获取当前文件的一个内存URL
                 //download是 HTML5 中<a>标签新增的一个属性，此属性会强制触发下载操作，指示浏览器下载 URL 而不是导航到它，并提示用户将其保存为本地文件
                 save_link.download = name;

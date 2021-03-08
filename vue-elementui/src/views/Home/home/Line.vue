@@ -15,7 +15,7 @@
         },
         methods: {
             /**
-             * @description 初始化地图
+             * @description 初始化折线图
              */
             initChart(){
                 // 基于准备好的dom，初始化echarts实例

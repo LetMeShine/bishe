@@ -41,19 +41,6 @@
             </el-table-column>
         </el-table>
 
-        <!-- 通过弹层功能 -->
-        <el-dialog title="贷款审批-初审" :visible.sync="dialogPassVisible">
-            <p>是否初审通过？</p>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogPassVisible = false">
-                    取消
-                </el-button>
-                <el-button type="success" @click="passData()">
-                    通过
-                </el-button>
-            </div>
-        </el-dialog>
-
         <!-- 拒绝弹层功能 -->
         <el-dialog title="贷款审批-初审" :visible.sync="dialogRefuseVisible">
             <p>是否初审拒绝？</p>
@@ -69,7 +56,7 @@
 
         <!-- 详情弹层功能 -->
         <el-dialog title="贷款审批-查看详情" :visible.sync="dialogDetailsVisible">
-            <el-form :model="temp" label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
+            <el-form :model="temp" label-position="left" label-width="100px" class="detail">
                 <el-form-item label="ID" prop="id">
                     <el-input v-model="temp.id" readonly/>
                 </el-form-item>
@@ -104,13 +91,13 @@
 
         <!-- 分页单独处理 -->
         <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="listQuery.pageNo"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="listQuery.pageSize"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="total">
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="listQuery.pageNo"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="listQuery.pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total">
         </el-pagination>
 
     </div>
@@ -151,8 +138,8 @@
         },
         filters: {
             getDate(time) {
-                var d = new Date(time);
-                var times = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                let d = new Date(time);
+                let times = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
                 return times;
             },
             getSex(type) {
@@ -180,12 +167,15 @@
             this.getList()
         },
         methods: {
+            /**
+             * @description 获取数据列表
+             */
             getList() {
                 this.listLoading = true;
                 approveFirstList(this.listQuery).then(res => {
-                    var {code} = res.data;
+                    let {code} = res.data;
                     if (code == '20000') {
-                        var {data, rows, pages} = res.data.data.data;
+                        let {data, rows, pages} = res.data.data.data;
                         this.list = data;  //获取展示的数据
                         this.total = rows; //获取总数量
                         this.pages = pages; //获取总页数
@@ -195,43 +185,70 @@
                     }, 1.5 * 1000)
                 })
             },
-            //姓名查找
+            /**
+             * @description 姓名查找
+             */
             handleFilterName() {
                 this.getList()
             },
-            //当前条数变化
+            /**
+             * @description 当前条数变化
+             * 
+             * @param {Number} val 每一页显示的条数
+             * @returns {void}
+             */
             handleSizeChange(val = this.listQuery.pageSize) {
                 this.listQuery.pageSize = val;
                 this.getList();
             },
-            //当前页变化
+            /**
+             * @description 当前页变化
+             * 
+             * @param {Number} val 当前页数
+             * @returns {void}
+             */
             handleCurrentChange(val = this.listQuery.pageNo) {
                 this.listQuery.pageNo = val;
                 this.getList();
             },
-            //查看详情
+            /**
+             * @description 查看详情
+             * 
+             * @param {Object} row 详情数据
+             * @returns {void}
+             */
             handleDetails(row) {
                 this.listLoading = true;
                 loanQuery({id: row.loan_id}).then(res => {
                     this.dialogDetailsVisible = true; //通过弹层的显示
-                    var {code} = res.data;
+                    let {code} = res.data;
                     if (code == '20000') {
                         this.temp = res.data.data.data;  //获取展示的数据
                     }
                 })
             },
-            //通过功能
+            /**
+             * @description 审核通过
+             * 
+             * @param {Object} row 通过的数据
+             * @returns {void}
+             */
             handlePass(row) {
                 this.temp = {...row};
-                this.dialogPassVisible = true; //通过弹层的显示
+                this.$confirm('贷款审批-初审', '是否初审通过？', {
+                    type: 'warning'
+                }).then(() => {
+                    this.passData();
+                });
             },
-            //通过提交
+            /**
+             * @description 提交审核
+             */
             passData() {
                 const tempData = {...this.temp};
                 approveFirstPass({appId: tempData.id, loanId: tempData.loan_id}).then(res => {
-                    var {code} = res.data;
+                    let {code} = res.data;
                     if (code == '20000') {
-                        this.dialogPassVisible = false;  //弹层隐藏
                         this.getList(); //调用查询接口
                         this.$notify({
                             title: '初审通过',
@@ -243,19 +260,30 @@
                 })
 
             },
-            //拒绝功能
+            /**
+             * @description 审核不通过
+             * 
+             * @param {Object} row 不通过的数据
+             * @returns {void}
+             */
             handleRefuse(row) {
                 this.temp = {...row};
-                this.dialogRefuseVisible = true; //弹层的显示
+                this.$confirm('贷款审批-初审', '是否初审拒绝？', {
+                    type: 'warning'
+                }).then(() => {
+                    this.refuseData();
+                });
+
             },
-            //拒绝提交
-            RefuseData() {
+            /**
+             * @description 拒绝提交
+             */
+            refuseData() {
                 const tempData = {...this.temp};
                 approveFirstReject({appId: tempData.id, loanId: tempData.loan_id}).then(res => {
-                    var {code} = res.data;
+                    let {code} = res.data;
                     if (code == '20000') {
                         this.getList();//调用查询接口
-                        this.dialogRefuseVisible = false;  //弹层隐藏
                         this.$notify({
                             title: '初审拒绝',
                             message: '初审拒绝',
@@ -268,3 +296,10 @@
         }
     }
 </script>
+<style scoped>
+    .detail {
+        height: 400px;
+        width: 100%;
+        overflow: auto;
+    }
+</style>

@@ -9,6 +9,9 @@
 </template>
 
 <script>
+    /**
+    * @fileoverview 布局组件
+    */
     import {Aside, Header, Main} from './compoents'
 
     export default {

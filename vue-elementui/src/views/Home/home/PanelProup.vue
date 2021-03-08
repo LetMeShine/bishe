@@ -1,4 +1,5 @@
 <template>
+    <!-- 卡片组件 -->
     <el-row :gutter="40" class="panel-group">
         <el-col :xs="24" :sm="12" :lg="6" class="card-panel-col" v-for="(list,i) in lists" :key="i">
             <div class="card-panel" :style="{background:list.color}">

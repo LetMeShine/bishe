@@ -1,3 +1,6 @@
+/**
+ * @fileoverview 将token存在sessionStorage
+ */
 const tokenKey = 'token'
 // 存
 export function setToken(token) {

@@ -1,3 +1,6 @@
+/**
+ * @fileoverview 常用配置数据
+ */
 //性别
 export const sexOptions = [
     {key: 'man', display_name: '男'},

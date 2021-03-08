@@ -3,7 +3,6 @@
 </template>
 
 <script>
-    // import echarts from 'echarts' //4.9.0
     import {init} from 'echarts' //5.0.0
     import {ring} from './config'
     export default {
@@ -15,7 +14,7 @@
         },
         methods: {
             /**
-             * @description 初始化地图
+             * @description 初始化饼图
              */
             initChart(){
                 // 基于准备好的dom，初始化echarts实例

@@ -14,7 +14,8 @@ VueRouter.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err)
 }
 
-export const constantRoutes = [ //常规配置
+// 常规配置
+export const constantRoutes = [ 
     {
         path: '/',
         redirect: '/home'
@@ -40,7 +41,8 @@ export const constantRoutes = [ //常规配置
     },
 ]
 
-export const asyncRoutes = [  //动态配置
+// 动态配置
+export const asyncRoutes = [
     {
         path: '/index',
         name: 'index',
@@ -50,19 +52,19 @@ export const asyncRoutes = [  //动态配置
     {
         path: '/loan-input',
         name: 'loan-innput',
-        meta: {title: '贷款申请', roles:['input']},// 允许用户角色是approve的用户登录  是后端返回的
+        meta: {title: '贷款申请', roles:['input','input-manager']},// 允许用户角色是approve的用户登录  是后端返回的
         component: ()=>import('../views/Home/loan-input/index.vue')
     },
     {
         path: '/input-manager',
         name: 'input-manager',
-        meta: {title: '申请管理', roles:['input']},// 允许用户角色是approve的用户登录  是后端返回的
+        meta: {title: '申请管理', roles:['input']},
         component: ()=>import('../views/Home/input-manager/index.vue')
     },
     {
         path: '/loan-approve',//贷款审批
         name: 'loan-approve',
-        meta: {title:'贷款审批'},
+        meta: {title:'贷款审批', roles: ['approve']},
         component: ()=>import('../views/Home/loan-approve/index.vue'),
         children: [
             {
@@ -82,10 +84,10 @@ export const asyncRoutes = [  //动态配置
     {
         path: '/contract-manager',
         name: 'contract-manager',
-        meta: {title: '标的管理', roles:['input']},// 允许用户角色是approve的用户登录  是后端返回的
+        meta: {title: '标的管理'},// 允许用户角色是approve的用户登录  是后端返回的
         component: ()=>import('../views/Home/contract-manager/index.vue')
     },
-    permission,  // 去掉注释会报错
+    permission,
 ]
 const router = new VueRouter({
     routes: constantRoutes// 默认常规配置

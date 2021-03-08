@@ -4,8 +4,7 @@
 import Vue from 'vue';
 
 const componentsContext = require.context('./',true, /\.js$/);
-// console.log(componentsContext);
-// console.log(componentsContext.keys());
+
 //注册全局组件
 componentsContext.keys().forEach(component => {
     const componentConfig = componentsContext(component);

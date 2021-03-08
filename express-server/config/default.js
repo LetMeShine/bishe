@@ -1,22 +1,11 @@
-// 1.node 导出方式 module.exports  require
-// module.exports = () => {
-// 2.es6导入导出方式 export default  import a from './'
-// export  import {a} from
-
 import fs from 'fs'
 import path from 'path'
-import config from './config'
-import logger from '../app/utils/logger';
-import db from '../sql'
 export default () => {
     const express = require('express');
-
     // 用于http请求中body解析
     const bodyParser = require('body-parser');
-
     // 使用工具包
     const util = require('util');
-
     const app = express();
 
     // 后端路由
@@ -47,19 +36,7 @@ export default () => {
     app.use(bodyParser.urlencoded({extended: true}));// 解析的表单
 
     // 添加路由,这里的第一个参数可以设置路由的前缀
-    require('../app/routes/user')(app);
-    app.get('/test',async (req,res,next)=>{
-        // let sql = 'select * from user'
-        // db.selectAll(sql).then(result=>res.send(result));
-        // let sql =`update user set type=2 where id=2`
-        // db.update(sql).then(result => res.send(result));
-        // let sql =`insert into user set ?`
-        // let post = {id:null,username:'test4',password:'123456',type:3}
-        // db.add(sql,post).then(result => res.send(result));
-        // let sql =`delete from user where id=4`
-        // db.delete(sql).then(result => res.send(result));
-    })
-
+    // require('../app/routes/user')(app);
     // 动态添加路由
     let routeFiles = path.join(__dirname,'../app/routes')
     fs.readdirSync(routeFiles).forEach(file => {

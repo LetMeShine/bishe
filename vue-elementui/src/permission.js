@@ -1,3 +1,6 @@
+/**
+ * @fileoverview 访问拦截
+ */
 import router from './router'
 import store from './store'
 // 后端传递用户信息
@@ -18,7 +21,7 @@ router.beforeEach(async (to, from, next) => {
             let rolesName= roles.map(v=>v.name);
             //过滤角色
             let filterRoutes = await store.dispatch('generateroutes',rolesName);
-            console.log(roles,rolesName,filterRoutes,123)
+            // console.log(roles,rolesName,filterRoutes,123)
             //动态添加
             router.addRoutes(filterRoutes);
             if (roles) {

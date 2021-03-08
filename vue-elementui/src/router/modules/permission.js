@@ -7,14 +7,14 @@ const permission = {
         {
             path: 'create',  //创建管理员
             name: 'create',
-            meta:{title:'创建管理员'},
-            component: () => import( '@/views/Home/permission/Create.vue')
+            meta:{title:'创建用户'},
+            component: () => import( '@/views/Home/permission/create.vue')
         },
         {
             path: 'list',  //列表展示
             name: 'list',
             meta:{title:'列表展示'},
-            component: () => import( '@/views/Home/permission/UserList.vue')
+            component: () => import( '@/views/Home/permission/userList.vue')
         },
     ]
 }

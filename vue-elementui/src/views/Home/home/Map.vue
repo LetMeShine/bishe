@@ -12,6 +12,9 @@
             }
         },
         methods: {
+            /**
+             * @description 初始化地图
+             */
             initMap(){
                 let myChart = init(this.$refs.map);
                 myChart.setOption(map());

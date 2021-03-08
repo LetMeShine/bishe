@@ -1,78 +1,76 @@
 <template>
-    <div class="app-container">
-        <div class="filter-container">
-        </div>
-        <el-form ref="temp" :rules="rules" :model="temp" label-position="center" label-width="108px">
+    <el-dialog title="编辑" :visible.sync="show" :modal-append-to-body="false">
+        <el-form class="detail" ref="detail" :rules="rules" :model="detail" label-position="left" label-width="108px">
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
                     <span>个人基本信息</span>
                 </div>
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="姓名" prop="name">
-                            <el-input v-model="temp.name"/>
+                            <el-input v-model="detail.name"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="出生日期" prop="birthday">
-                            <el-date-picker type="datetime" v-model="temp.birthday"/>
+                            <el-date-picker type="datetime" v-model="detail.birthday"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="性别" prop="sex">
-                            <el-select v-model="temp.sex" class="filter-item" placeholder="Please select">
+                            <el-select v-model="detail.sex" class="filter-item" placeholder="Please select">
                                 <el-option v-for="item in sexOptions" :key="item.key" :label="item.display_name"
                                            :value="item.key"/>
                             </el-select>
                         </el-form-item>
                     </el-col>
-                </el-row>
-                <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="身份证" prop="identity_card">
-                            <el-input v-model.number="temp.identity_card"/>
+                            <el-input v-model.number="detail.identity_card"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
-
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="婚姻状态" prop="marriage">
-                            <el-select v-model="temp.marriage" class="filter-item" placeholder="Please select">
+                            <el-select v-model="detail.marriage" class="filter-item" placeholder="Please select">
                                 <el-option v-for="item in marriageOptions" :key="item.key" :label="item.display_name"
                                            :value="item.key"/>
                             </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="教育程度" prop="education">
-                            <el-select v-model="temp.education" class="filter-item" placeholder="Please select">
+                            <el-select v-model="detail.education" class="filter-item" placeholder="Please select">
                                 <el-option v-for="item in educationOptions" :key="item.key" :label="item.display_name"
                                            :value="item.key"/>
                             </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="居住地址" prop="address1">
-                            <el-input v-model="temp.address1"/>
+                            <el-input v-model="detail.address1"/>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
+                        <el-form-item label="户籍地址" prop="address2">
+                            <el-input v-model="detail.address2"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
-
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
-                        <el-form-item label="户籍地址" prop="address2">
-                            <el-input v-model="temp.address2"/>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="居住电话" prop="phone">
-                            <el-input v-model.number="temp.phone"/>
+                            <el-input v-model.number="detail.phone"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="手机号" prop="mobile_phone">
-                            <el-input v-model.number="temp.mobile_phone"/>
+                            <el-input v-model.number="detail.mobile_phone"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -83,46 +81,50 @@
                 <div slot="header" class="clearfix">
                     <span>职业信息</span>
                 </div>
-                <el-row>
-                    <el-col :xs="24" :sm="12" :md="6" :lg="6">
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="现职公司全称" prop="company">
-                            <el-input v-model="temp.company"/>
+                            <el-input v-model="detail.company"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="6" :lg="6">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="所属行业" prop="trade">
-                            <el-select v-model="temp.trade" class="filter-item" placeholder="Please select">
+                            <el-select v-model="detail.trade" class="filter-item" placeholder="Please select">
                                 <el-option v-for="item in companyOptions" :key="item.key" :label="item.display_name"
                                            :value="item.key"/>
                             </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="6" :lg="6">
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="职位" prop="position">
-                            <el-input v-model="temp.position"/>
+                            <el-input v-model="detail.position"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="6" :lg="6">
-                        <el-form-item label="公司地址" prop="address3">
-                            <el-input v-model="temp.address3"/>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
+                        <el-form-item label="公司电话" prop="company_phone">
+                            <el-input v-model.number="detail.company_phone"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
 
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="公司类型" prop="company_type">
-                            <el-input v-model="temp.company_type"/>
+                            <el-input v-model="detail.company_type"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="公司邮箱" prop="company_email">
-                            <el-input v-model="temp.company_email"/>
+                            <el-input v-model="detail.company_email"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
-                        <el-form-item label="公司电话" prop="company_phone">
-                            <el-input v-model.number="temp.company_phone"/>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                        <el-form-item label="公司地址" prop="address3">
+                            <el-input v-model="detail.address3"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -134,9 +136,9 @@
                     <span>收支情况</span>
                 </div>
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="24" :md="24" :lg="24">
                         <el-form-item label="收支情况" prop="income">
-                            <el-input v-model="temp.income"/>
+                            <el-input v-model="detail.income"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -148,19 +150,19 @@
                     <span>家庭联系人</span>
                 </div>
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="关系1" prop="contact">
-                            <el-input v-model="temp.contact"/>
+                            <el-input v-model="detail.contact"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="姓名" prop="contact_name">
-                            <el-input v-model="temp.contact_name"/>
+                            <el-input v-model="detail.contact_name"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="手机" prop="contact_phone">
-                            <el-input v-model.number="temp.contact_phone"/>
+                            <el-input v-model.number="detail.contact_phone"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -172,93 +174,110 @@
                     <span>工作证明人</span>
                 </div>
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="关系2" prop="contact2">
-                            <el-input v-model="temp.contact2"/>
+                            <el-input v-model="detail.contact2"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="姓名" prop="contact2_name">
-                            <el-input v-model="temp.contact2_name"/>
+                            <el-input v-model="detail.contact2_name"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="手机" prop="contact2_phone">
-                            <el-input v-model.number="temp.contact2_phone"/>
+                            <el-input v-model.number="detail.contact2_phone"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
 
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="部门" prop="contact2_dep">
-                            <el-input v-model="temp.contact2_dep"/>
+                            <el-input v-model="detail.contact2_dep"/>
                         </el-form-item>
                     </el-col>
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="职位" prop="contact2_pos">
-                            <el-input v-model="temp.contact2_pos"/>
+                            <el-input v-model="detail.contact2_pos"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
 
                 <el-row :gutter="10">
-                    <el-col :xs="24" :sm="12" :md="8" :lg="8">
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <el-form-item label="备注">
-                            <el-input v-model="temp.remark" maxlength="300" resize="none" :autosize="{ minRows: 2, maxRows: 4}" type="textarea"
+                            <el-input v-model="detail.remark" maxlength="300" resize="none" :autosize="{ minRows: 2, maxRows: 4}" type="textarea"
                                       placeholder="请输入备注信息"/>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-card>
-
-
         </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="submitForm('temp')">提交申请</el-button>
-            <el-button @click="resetForm('temp')">重置</el-button>
 
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="show = false">取 消</el-button>
+            <el-button type="primary" @click="ok">确 定</el-button>
         </div>
-    </div>
+    </el-dialog>
 </template>
 
 <script>
-    import {loanCreate} from '@/api/http'
     import {sexOptions, companyOptions, marriageOptions, educationOptions} from '@/utils/selectData'
-
     export default {
-        name: 'ComplexTable',
-        data() {
-            return {
-                temp: {
-                    name: '',//姓名
-                    identity_card: '',//身份证
-                    birthday: '',//出生日期
-                    sex: '',//性别
-                    marriage: '',//婚姻状态
-                    education: '',//教育程度
-                    address1: '',//居住地址
-                    address2: '',//户籍地址
-                    phone: '',//居住电话
-                    mobile_phone: '',//手机号
-                    company: '',//现职公司全称
-                    trade: '',//所属行业
-                    position: '',//职位
-                    address3: '',//公司地址
-                    company_type: '',//公司类型
-                    company_email: '',//公司邮箱
-                    company_phone: '',//公司电话
-                    income: '',//收支情况
-                    contact: '',//关系1
-                    contact_name: '',//姓名
-                    contact_phone: '',//手机
-                    contact2: '',//关系2
-                    contact2_name: '',//姓名
-                    contact2_phone: '',//手机
-                    ontact2_dep: '',//部门
-                    contact2_pos: '',//职位
-                    remark: ''//备注
+        name: 'loan-detail',
+        props: {
+            detail: {
+                type: Object,
+                default: () => {
+                    return {
+                        name: '',//姓名
+                        identity_card: '',//身份证
+                        birthday: '',//出生日期
+                        sex: '',//性别
+                        marriage: '',//婚姻状态
+                        education: '',//教育程度
+                        address1: '',//居住地址
+                        address2: '',//户籍地址
+                        phone: '',//居住电话
+                        mobile_phone: '',//手机号
+                        company: '',//现职公司全称
+                        trade: '',//所属行业
+                        position: '',//职位
+                        address3: '',//公司地址
+                        company_type: '',//公司类型
+                        company_email: '',//公司邮箱
+                        company_phone: '',//公司电话
+                        income: '',//收支情况
+                        contact: '',//关系1
+                        contact_name: '',//姓名
+                        contact_phone: '',//手机
+                        contact2: '',//关系2
+                        contact2_name: '',//姓名
+                        contact2_phone: '',//手机
+                        ontact2_dep: '',//部门
+                        contact2_pos: '',//职位
+                        remark: ''//备注
+                    }
+                }
+            },
+            isShow: {
+                type: Boolean,
+                default: () => false
+            }
+        },
+        computed: {
+            show: {
+                get(){
+                    return this.isShow;
                 },
+                set(val){
+                    this.$emit('on-show',val);
+                }
+            }
+        },
+        data(){
+            return {
                 rules: {
                     name: [
                         {required: true, message: '请输入姓名', trigger: 'blur'},
@@ -349,44 +368,19 @@
         },
         methods: {
             /**
-             * @description 提交申请
-             * 
-             * @param {String} formName 提交的表单对象
-             * @returns {void}
+             * @description 保存编辑
              */
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        //校验成功
-                        loanCreate(this.temp).then(res => {
-                            console.log(res)
-                            this.$router.push('/input-manager');  //跳转到申请管理
-                            this.$notify({
-                                title: '成功',
-                                message: '提交成功',
-                                type: 'success',
-                                duration: 2000
-                            });
-
-
-                        })
-
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
+            ok(){
+                this.$emit('on-save',this.detail);
             }
         }
     }
 </script>
-<style>
-    .box-card {
-        margin-bottom: 15px;
-    }
-    .dialog-footer {
+
+<style scoped>
+    .detail {
+        height: 450px;
         width: 100%;
-        height: 100%;
-        text-align: center;
+        overflow: auto;
     }
 </style>

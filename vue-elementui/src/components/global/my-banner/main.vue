@@ -14,6 +14,7 @@
     export default {
         name: "my-banner",
         props: {
+            // 轮播图集合
             items: {
                 type: Array,
                 default: () => [require('@/assets/img/1.jpg')]
@@ -21,14 +22,20 @@
         },
         data(){
             return {
-                cur: 0,// 初始化
+                cur: 0,// 当前图片下标
                 timer: null,//定时器初始化
             }
         },
         methods: {
+            /**
+            * @description 自动播放
+            */
             autoPlay(){
                 this.timer = setInterval(this.play,2000);
             },
+            /**
+            * @description 下一页动播放
+            */
             play(){
                 this.cur++;
                 this.cur = this.cur === this.items.length ? 0 : this.cur;
@@ -38,6 +45,7 @@
             this.autoPlay();
         },
         destroyed(){
+            // 清除定时器
             clearInterval(this.timer);
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="create-user">
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
             <el-form-item label="用户名" prop="name">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
@@ -138,10 +138,32 @@
 
 <style scoped>
     .create-user {
-        width: 40%;
+        /* width: 40%; */
         margin: 60px auto;
+        width: 500px;
+        height: 380px;
+        background-color: #e4fbff;
+        border-radius: 6px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.247);
+        padding: 20px;
     }
     .bottom {
         text-align: center;
+    }
+    .wapper {
+        width: 100%;
+        height: 100%;
+        background-color: #7868e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .login {
+        width: 450px;
+        height: 300px;
+        background-color: #e4fbff;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.247);
     }
 </style>

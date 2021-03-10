@@ -17,13 +17,17 @@ router.beforeEach(async (to, from, next) => {
         } else {
             // 获取角色，发请求 await
             let {roles} = await store.dispatch('user');
-            //取出角色
-            let rolesName= roles.map(v=>v.name);
-            //过滤角色
-            let filterRoutes = await store.dispatch('generateroutes',rolesName);
-            // console.log(roles,rolesName,filterRoutes,123)
-            //动态添加
-            router.addRoutes(filterRoutes);
+            if(!roles){
+                next({path: '/login'})
+            } else {
+                //取出角色
+                let rolesName= roles.map(v=>v.name);
+                //过滤角色
+                let filterRoutes = await store.dispatch('generateroutes',rolesName);
+                // console.log(roles,rolesName,filterRoutes,123)
+                //动态添加
+                router.addRoutes(filterRoutes);
+            }
             if (roles) {
                 next({...to});// 页面刷新的话，保持在当前页面
             } else {

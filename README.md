@@ -7,9 +7,9 @@
 vue2 + vuex + vue-router + element-ui + express
 
 ## 项目运行
-1.前端项目运行vue-elementui，可直接下载node压缩包直接解压，
+1. 前端项目运行vue-elementui，可直接下载node压缩包直接解压，
 npm start可运行
-2.后端服务 express-server
+2. 后端服务 express-server
 npm install安装依赖包
 npm start 启动项目
 

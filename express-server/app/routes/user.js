@@ -5,7 +5,7 @@ const router = express.Router();
 
 export default (app) => {
     router.route('/user/login').post(userRouter.login);
-    router.route('/user/query').get(userRouter.login);
+    router.route('/user/register').post(userRouter.register);
 
     // /api是路由的前缀
     app.use('/',router);

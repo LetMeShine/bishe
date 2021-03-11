@@ -35,6 +35,14 @@ export default () => {
     app.use(bodyParser.json());// json
     app.use(bodyParser.urlencoded({extended: true}));// 解析的表单
 
+    // app.post('/test',(req,res,next) => {
+    //     console.log(req);
+    //     let {username,password} = req.body;
+    //     const crypto = require('./crypto');
+    //     let kk = crypto.md5(password);
+    //     res.send({username,kk});
+    // })
+
     // 添加路由,这里的第一个参数可以设置路由的前缀
     // require('../app/routes/user')(app);
     // 动态添加路由

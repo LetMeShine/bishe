@@ -7,7 +7,7 @@ import crypto from "../../config/crypto";
 import * as userService from "../service/user";
 import Constant from "../utils/constant";
 import logger from "../utils/logger";
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 
 const userCtrl = {
     /**
@@ -39,11 +39,11 @@ const userCtrl = {
                         let jwt = userCtrl.generateJwtToken(result);
                         resp.json({code: 200, token: jwt});
                     } else {
-                        resp.json({code: 200, msg: '无此用户||密码错误'});
+                        resp.json({code: 2005, msg: '无此用户||密码错误'});
                     }
                 })
         } else {
-            resp.json({code: 200, msg: '参数无效!'});
+            resp.json({code: 2006, msg: '参数无效!'});
         }
 
     },
@@ -57,7 +57,7 @@ const userCtrl = {
                 resp.json({code: 200})
             }).catch((err) => {
                 logger.error(err.getMessge(),err);
-                resp.josn({code: 500});
+                resp.josn({code: 2007, msg: "服务器报错"});
             })
         }
     }

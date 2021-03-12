@@ -10,25 +10,43 @@ import db from '../../sql'
  */
 export function findUserByUsername(username='',password='') {
     let sql = `select id, username from user where username = '${username}' and password = '${password}'`;
-    return db.selectAll(sql);
+    return new Promise((resolve, reject) => {
+        db.query(sql, [], (err,result) => {
+            if(err) reject(err);
+            resolve(result);
+        })
+    });
 }
 
 /**
  * @returns 添加用户
  * @param {Object} user 用户json对象 {username:xx,password:yy}
  */
-export function createUser(username, password, role_id) {
+export function createUser(username, password, real_name) {
     let sql = `insert into user set ?`,
-        post = {id:null,username, password,  type: role_id};
-    return db.add(sql,post);
+        post = {id:null,username, password, real_name};
+    return new Promise((resolve, reject) => {
+        db.query(sql, post, (err,result) => {
+            if(err) reject(err);
+            resolve(result);
+        })
+    });
 }
 /**
  * @description 根据id查找用户
  * @param {Number} userId
  */
 export function findUser(userId) {
-    let sql = ``;
-    return db.selectAll(sql);
+    let sql = `select id, username, type, real_name as name, modified, remark, creator, reg_time, created from user`;
+    if(userId) {
+        sql += ` where id=${userId}`;
+    }
+    return new Promise((resolve, reject) => {
+        db.query(sql, [], (err,result) => {
+            if(err) reject(err);
+            resolve(result);
+        })
+    });
 }
 /**
  * @description 修改用户，表--主键id
@@ -36,7 +54,12 @@ export function findUser(userId) {
  */
 export function updateUser(user) {
     let sql = ``;
-    return db.update(sql);
+    return new Promise((resolve, reject) => {
+        db.query(sql, [], (err,result) => {
+            if(err) reject(err);
+            resolve(result);
+        })
+    });
 }
 /**
  * @description 根据id删除用户
@@ -44,7 +67,12 @@ export function updateUser(user) {
  */
 export function deleteUser(id) {
     let sql = ``;
-    return db.delete(sql);
+    return new Promise((resolve, reject) => {
+        db.query(sql, [], (err,result) => {
+            if(err) reject(err);
+            resolve(result);
+        })
+    });
 }
 
 /**

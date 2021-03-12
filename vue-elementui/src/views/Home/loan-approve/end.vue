@@ -174,7 +174,7 @@
                 this.listLoading = true;
                 approveEndList(this.listQuery).then(res => {
                     let {code} = res.data;
-                    if (code == '20000') {
+                    if (code == '200') {
                         let {data, rows, pages} = res.data.data.data;
                         this.list = data;  //获取展示的数据
                         this.total = rows; //获取总数量
@@ -222,7 +222,7 @@
                 loanQuery({id: row.loan_id}).then(res => {
                     this.dialogDetailsVisible = true; //通过弹层的显示
                     let {code} = res.data;
-                    if (code == '20000') {
+                    if (code == '200') {
                         this.temp = res.data.data.data;  //获取展示的数据
                     }
                 })
@@ -248,7 +248,7 @@
                 const tempData = {...this.temp};
                 approveEndPass({appId: tempData.id, loanId: tempData.loan_id}).then(res => {
                     let {code} = res.data;
-                    if (code == '20000') {
+                    if (code == '200') {
                         this.getList(); //调用查询接口
                         this.$notify({
                             title: '初审通过',
@@ -282,7 +282,7 @@
                 const tempData = {...this.temp};
                 approveEndReject({appId: tempData.id, loanId: tempData.loan_id}).then(res => {
                     let {code} = res.data;
-                    if (code == '20000') {
+                    if (code == '200') {
                         this.getList();//调用查询接口
                         this.$notify({
                             title: '初审拒绝',

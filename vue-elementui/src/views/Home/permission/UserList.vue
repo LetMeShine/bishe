@@ -4,7 +4,7 @@
         :data="tableData.slice(pageNo - 1, pageNo + 9)"
         style="width: 100%">
             <el-table-column
-                prop="account"
+                prop="username"
                 label="用户名"
                 width="180">
             </el-table-column>
@@ -17,7 +17,7 @@
                 label="创建者">
             </el-table-column>
             <el-table-column
-                prop="role_name"
+                prop="type"
                 label="权限分配">
             </el-table-column>
         </el-table>
@@ -45,7 +45,7 @@
         },
         created() {
             userList().then(({data}) => {
-                if(data.code === 20000){
+                if(data.code === 200){
                     this.tableData = data.data;
                     this.pages = Math.ceil(this.tableData.length / 10);
                 }

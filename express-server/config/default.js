@@ -17,11 +17,11 @@ export default () => {
     // 跨域
     app.use((req,res,next) => {
         // http请求来源
-        res.setHeader('Acces-Control-Allow-Orgin','*');
+        res.setHeader('Access-Control-Allow-Origin','*');
         // get post
-        res.setHeader('Acces-Control-Allow-Methods','*');
+        res.setHeader('Access-Control-Allow-Methods','*');
         //token jwt cookie
-        res.setHeader('Acces-Control-Allow-Headers','*');
+        res.setHeader('Access-Control-Allow-Headers','*');
         next();
     });
 

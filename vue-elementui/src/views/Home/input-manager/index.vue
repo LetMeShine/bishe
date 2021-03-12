@@ -190,7 +190,7 @@
                     type: 'warning'
                 }).then(() => {
                     loanDelete(id).then(({data}) => {
-                        if(data.code === 20000){
+                        if(data.code === 200){
                             this.$notify({  //通知框
                                 title: '删除申请',
                                 message: '删除成功',
@@ -219,7 +219,7 @@
              */
             save(data){
                 loanUpdate(data).then(({data}) => {
-                    if(data.code === 20000){
+                    if(data.code === 200){
                         this.isShow = false;
                         this.$notify({  //通知框
                             title: '审核编辑',
@@ -245,7 +245,7 @@
             getList() {
                 loanList(this.listQuery).then(res => {
                     let {code} = res.data;
-                    if (code == '20000') {
+                    if (code == '200') {
                         let {data, rows, pages} = res.data.data.data;
                         this.tableData = data;
                         this.rows = rows;
@@ -288,7 +288,7 @@
             handleSubmit(row) {
                 submitToApprove({id: row.id}).then(res => {
                     let {code} = res.data;
-                    if (code == '20000') {
+                    if (code == '200') {
                         this.getList();
                         this.$notify({  //通知框
                             title: '提交审核',

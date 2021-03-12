@@ -52,9 +52,8 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     login(this.loginForm).then((res) => {
-                        let {code,data} = res.data;
-                        if(code === 20000){
-                            let token = data.token;
+                        let {code,token} = res.data;
+                        if(code === 200){
                             // token缓存
                             token && setToken(token);
                             this.$router.push('./home');

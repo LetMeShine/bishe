@@ -23,8 +23,7 @@ const actions = {
      */
     user({commit}){
         return new Promise((resolve,reject)=>{
-            userInfo().then(res=>{
-                let {data} = res.data;
+            userInfo().then(({data})=>{
                 commit('SETROLES',data.roles)
                 resolve(data);
             }).catch(error=>{

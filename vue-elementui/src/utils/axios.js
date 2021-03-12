@@ -18,11 +18,11 @@ axios.interceptors.request.use((config) => {
 //添加响应拦截器
 axios.interceptors.response.use((response) => {
     // 对响应数据做点什么
-    let {code, msg} = response.data;
-    let {message} = response.data.data;
-    if(code !== 20000){
+    let {code,msg} = response.data;
+    // let {message} = response.data.data;
+    if(code !== 200){
         Message({
-            message: msg || message,
+            message: msg,
             type: 'warning',
             duration: 2000
         })

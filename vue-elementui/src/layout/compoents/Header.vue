@@ -44,7 +44,7 @@
             goBack() {
                 logout().then(res => {
                     let {code} = res.data;
-                    if (code == 20000) {
+                    if (code == 200) {
                         //删除token
                         removeToken();
                         this.$router.push('/login');

@@ -12,7 +12,7 @@ import axios from '@/utils/axios'
 export function login(data) {
     return axios({
         method: 'post',
-        url: '/user/login',
+        url: 'http://localhost:3300/user/login',
         data: data
     })
 }
@@ -25,7 +25,7 @@ export function login(data) {
 export function userInfo(){
     return axios ({
         method:'get',
-        url:`user/info`,
+        url:`http://localhost:3300/user/info`,
     })
 }
 
@@ -36,8 +36,8 @@ export function userInfo(){
  */
 export function logout() { //退出
     return axios({
-        method: 'post',
-        url: '/user/logout',
+        method: 'get',
+        url: 'http://localhost:3300/user/logout',
     })
 }
 
@@ -61,7 +61,7 @@ export function loanCreate(data) {   //
  * @param {Object} data 查询条件
  * @returns {promise} 接口返回的结果
  */
-export function loanList(data) {   //
+export function loanList(data) {
     return axios({
         method: 'get',
         url: `loan/list`,
@@ -259,8 +259,8 @@ export function contractDownload(data){
 export function createUser(data){
     return axios({
         method:'post',
-        url:'permission/createUser',
-        params:data
+        url:'http://localhost:3300/user/register',
+        data
     })
 }
 
@@ -272,6 +272,6 @@ export function createUser(data){
 export function userList(){
     return axios({
         method:'get',
-        url:'user/list',
+        url:'http://localhost:3300/user/list'
     })
 }

@@ -12,8 +12,8 @@
             </el-form-item>
             <el-form-item label="权限分配" prop="permi">
                 <el-radio-group v-model="ruleForm.permi">
-                    <el-radio label="2" value="2">普通用户</el-radio>
-                    <el-radio label="1" value="1">初审人员</el-radio>
+                    <el-radio label="3" value="3">普通用户</el-radio>
+                    <el-radio label="2" value="2">初审人员</el-radio>
                 </el-radio-group>
             </el-form-item>
             <el-form-item class="bottom">
@@ -101,10 +101,10 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let data = {
-                            account: this.ruleForm.name,
+                            username: this.ruleForm.name,
                             password: this.ruleForm.checkPwd,
-                            role_id: this.ruleForm.permi
-                        }
+                            type: this.ruleForm.permi
+                        };
                         createUser(data);
                         this.$notify({
                             title: '创建用户',

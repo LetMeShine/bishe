@@ -50,7 +50,7 @@ export function logout() { //退出
 export function loanCreate(data) {   //
     return axios({
         method: 'post',
-        url: `loan/create`,
+        url: `http://localhost:3300/loan/create`,
         data
     })
 }
@@ -58,14 +58,14 @@ export function loanCreate(data) {   //
 /**
  * @description 申请管理-查询
  * 
- * @param {Object} data 查询条件
+ * @param {Object} data 查询条件 // 分页限制
  * @returns {promise} 接口返回的结果
  */
 export function loanList(data) {
     return axios({
         method: 'get',
-        url: `loan/list`,
-        params: data
+        url: `http://localhost:3300/loan/list`,
+        data
     })
 }
 

@@ -1,18 +1,34 @@
 /**
- * @fileoverview 用户路由
+ * @fileoverview 路由
  */
 import jwt from "jsonwebtoken";
 import express from 'express'
 import Constant from "../utils/constant";
 import userContrl from '../controllers/user'
+import loanContrl from '../controllers/loan'
+import db from '../../sql'
 const router = express.Router();
 
 export default (app) => {
+    // 用户管理
     router.route('/user/login').post(userContrl.login);
     router.route('/user/register').post(userContrl.createUser);
     router.route('/user/info').get(userContrl.info);
     router.route('/user/logout').get(userContrl.logout);
     router.route('/user/list').get(userContrl.userList);
+    router.route('/user/test').get((req,res)=>{
+        let date = new Date();
+        let str = date.getFullYear() + '-' + date.getMonth()+'-'+date.getDate()+ ' ' +date.getHours() + ':'+date.getMinutes()+':'+date.getSeconds();
+        let sql = `update user set modified = '${str}' where id = 3`;
+        // let sql = `SELECT modified from user`;
+        db.query(sql,[],(err,ret)=>{
+            err;
+            res.json({ret,str});
+        });
+    });
+
+    // 申请管理
+    router.route('/loan/create').post(loanContrl.create);
 
     /**
      * @description jwt拦截器,对token进行处理,未登录不能访问网站

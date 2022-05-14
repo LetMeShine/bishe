@@ -37,7 +37,7 @@ export function createUser(username, password, real_name) {
  * @param {Number} userId
  */
 export function findUser(userId) {
-    let sql = `select id, username, type, real_name as name, modified, remark, creator, reg_time, created from user`;
+    let sql = `select id, username, type from user`;
     if(userId) {
         sql += ` where id=${userId}`;
     }

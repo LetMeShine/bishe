@@ -31,15 +31,13 @@ const userCtrl = {
     login(req, resp) {
         logger.info("===登录开始")
         let {account, password} = req.body;
-        console.log(req.body)
-
         //判断account pwd为空
         if (account && password) {
-            // 加密密码
-            let newPwd = crypto.md5(password);
-            userService.findUserByUsername(account, newPwd).then(data => {
+            let newPwd = crypto.md5(password);// MD5加密密码
+            userService.findUserByUsername(account, newPwd) // 查询用户名和密码
+            .then(data => {
                 if (data.length) {
-                    //生成jwt
+                    // 使用id和username生成jwt
                     let result = {
                         id: data[0].id,
                         account: data[0].username
@@ -55,7 +53,6 @@ const userCtrl = {
         } else {
             resp.json({code: 2006, msg: '参数无效!'});
         }
-
     },
     createUser(req,resp) {
         let {username, password, type} = req.body;

@@ -1,29 +1,29 @@
 {
-  "name": "express-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "cross-env PORT=52996 babel-node index.js",
-    "dev": "nodemon index.js --exec babel-node"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:LetMeShine/bishe.git"
-  },
-  "author": "wht",
-  "license": "ISC",
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-add-module-exports": "^1.0.4",
-    "babel-preset-env": "^1.7.0",
-    "body-parser": "^1.19.0",
-    "cross-env": "^7.0.3",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.2.5",
-    "nodemon": "^2.0.7",
-    "winston": "^3.3.3"
-  }
+    "name": "express-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "cross-env PORT=3300 babel-node index.js",
+        "dev": "nodemon index.js --exec babel-node"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:LetMeShine/bishe.git"
+    },
+    "author": "wht",
+    "license": "ISC",
+    "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-plugin-add-module-exports": "^1.0.4",
+        "babel-preset-env": "^1.7.0",
+        "body-parser": "^1.19.0",
+        "cross-env": "^7.0.3",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.2.5",
+        "nodemon": "^2.0.7",
+        "winston": "^3.3.3"
+    }
 }

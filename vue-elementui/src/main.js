@@ -18,6 +18,7 @@ import './permission'// 退出登录记得清空store
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 new Vue({
     router,

@@ -39,6 +39,11 @@ export const constantRoutes = [
             },
         ]
     },
+    {
+        path: '/userCenter',
+        name: 'userCenter',
+        component: () => import('../views/Home/user/index.vue')
+    }
 ]
 
 // 动态配置
@@ -84,7 +89,7 @@ export const asyncRoutes = [
     {
         path: '/contract-manager',
         name: 'contract-manager',
-        meta: {title: '标的管理'},// 允许用户角色是approve的用户登录  是后端返回的
+        meta: {title: '标的管理', roles: ['approve']},// 允许用户角色是approve的用户登录  是后端返回的
         component: ()=>import('../views/Home/contract-manager/index.vue')
     },
     permission,

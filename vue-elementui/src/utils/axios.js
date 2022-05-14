@@ -10,7 +10,7 @@ const tokenKey = 'token'
 axios.defaults.baseURL = 'http://139.196.42.209:5004/api';
 // 添加请求拦截器 在发送请求之前做些什么
 axios.interceptors.request.use((config) => {
-    // 将token加入到请求头
+    // 将token加入到请求头，getToken是从浏览器sessionStorage的缓存中取出
     config.headers[tokenKey] = getToken();
     return config;
 });
@@ -24,7 +24,7 @@ axios.interceptors.response.use((response) => {
         Message({
             message: msg,
             type: 'warning',
-            duration: 2000
+            duration: 5000
         })
     }
     return response;

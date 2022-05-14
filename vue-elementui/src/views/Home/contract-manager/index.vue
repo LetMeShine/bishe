@@ -33,7 +33,7 @@
             <el-table-column label="操作" width="250">
                 <template slot-scope="{row}">
                     <el-button
-                            size="mini" type="primary" @click="handleCreate(row)" :disabled="row.file_path!=''"
+                            size="mini" type="primary" @click="handleCreate(row)" :disabled="row.file_path==''"
                     >生成合同
                     </el-button>
                     <el-button
@@ -178,8 +178,9 @@
             downloadFile(url) {
                 let xhr = new XMLHttpRequest();
                 xhr.open('get', url);
-                xhr.responseType = "blob"; //字节流
+                xhr.responseType = "blob"; //字节流 还有json form-data
                 xhr.setRequestHeader('token', getToken());
+                // xmlHttp.setRequestHeader("Content-Type", "application/json")
                 xhr.onload = () => {
                     if (xhr.status == 200) {
                         let filename = xhr.responseURL.substring(xhr.responseURL.lastIndexOf("/") + 1);
@@ -195,12 +196,16 @@
              * @param {Object} data 文件流
              */
             saveAs(name, data) {
-                let urlObject = window.URL;  //window对象的URL对象是专门用来将blob或者file读取成一个url的。
-                let export_blob = new Blob([data]); //代表二进制类型的大对象,Blob对象是二进制数据
+                // window对象的URL对象是专门用来将blob或者file读取成一个url的。
+                let urlObject = window.URL;  
+                // 代表二进制类型的大对象,Blob对象是二进制数据
+                let export_blob = new Blob([data]); 
                 // <a href="12345.jpg" download="名称" >
                 let save_link = document.createElement('a');//创建a标签
-                save_link.href = urlObject.createObjectURL(export_blob); //通过URL.createObjectURL(blob)可以获取当前文件的一个内存URL
-                //download是 HTML5 中<a>标签新增的一个属性，此属性会强制触发下载操作，指示浏览器下载 URL 而不是导航到它，并提示用户将其保存为本地文件
+                //通过URL.createObjectURL(blob)可以获取当前文件的一个内存URL
+                save_link.href = urlObject.createObjectURL(export_blob); 
+                //download是 HTML5 中<a>标签新增的一个属性，此属性会强制触发下载操作
+                // 指示浏览器下载 URL 而不是导航到它，并提示用户将其保存为本地文件
                 save_link.download = name;
                 save_link.click();//触发a标签单击
             }

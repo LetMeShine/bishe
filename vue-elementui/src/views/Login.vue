@@ -11,6 +11,7 @@
                 </el-form-item>
                 <el-form-item class="submit">
                     <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+                    <div>没有账号？联系管理员开通 12345678</div>
                 </el-form-item>
             </el-form>
         </div>

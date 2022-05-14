@@ -1,16 +1,16 @@
 /**
- * @fileoverview 将token存在sessionStorage
+ * @fileoverview 将token存在localStorage
  */
 const tokenKey = 'token'
 // 存
 export function setToken(token) {
-    return sessionStorage.setItem(tokenKey,token);
+    return localStorage.setItem(tokenKey,token);
 }
 //取
 export function getToken() {
-    return sessionStorage.getItem(tokenKey);
+    return localStorage.getItem(tokenKey);
 }
 //删
 export function removeToken() {
-    return sessionStorage.removeItem(tokenKey)
+    return localStorage.removeItem(tokenKey)
 }

@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .el-breadcrumb {
     margin: 20px 10px;
     & > .right-menu {

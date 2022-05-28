@@ -22,10 +22,10 @@ export function login(data) {
  * 
  * @returns {promise} 接口返回的结果
  */
-export function userInfo(){
-    return axios ({
-        method:'get',
-        url:`http://localhost:3300/user/info`,
+export function userInfo() {
+    return axios({
+        method: 'get',
+        url: `http://localhost:3300/user/info`,
     })
 }
 
@@ -214,11 +214,11 @@ export function approveEndReject(data) {
  * @param {Object} data 查询的信息
  * @returns {promise} 合同列表
  */
-export function contractList(data){
+export function contractList(data) {
     return axios({
-        method:'get',
-        url:'contract/list',
-        params:data
+        method: 'get',
+        url: 'contract/list',
+        params: data
     })
 }
 
@@ -228,10 +228,10 @@ export function contractList(data){
  * @param {Object} data id
  * @returns {promise} 合同信息
  */
-export function contractCreateFile(data){
+export function contractCreateFile(data) {
     return axios({
-        method:'post',
-        url:'contract/createFile',
+        method: 'post',
+        url: 'contract/createFile',
         data
     })
 }
@@ -242,11 +242,11 @@ export function contractCreateFile(data){
  * @param {Object} data 合同id
  * @returns {promise} 合同下载的地址
  */
-export function contractDownload(data){
+export function contractDownload(data) {
     return axios({
-        method:'get',
-        url:'contract/download',
-        params:data
+        method: 'get',
+        url: 'contract/download',
+        params: data
     })
 }
 
@@ -256,10 +256,10 @@ export function contractDownload(data){
  * @param {Object} data 创建的用户的信息
  * @returns {promise} 接口返回的结果
  */
-export function createUser(data){
+export function createUser(data) {
     return axios({
-        method:'post',
-        url:'http://localhost:3300/user/register',
+        method: 'post',
+        url: 'http://localhost:3300/user/register',
         data
     })
 }
@@ -269,9 +269,9 @@ export function createUser(data){
  * 
  * @returns {promise} 接口返回的结果
  */
-export function userList(){
+export function userList() {
     return axios({
-        method:'get',
-        url:'http://localhost:3300/user/list'
+        method: 'get',
+        url: 'http://localhost:3300/user/list'
     })
 }

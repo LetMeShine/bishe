@@ -2,8 +2,8 @@
  * @fileoverview axios拦截
  */
 import axios from 'axios'
-import {getToken} from "./token";
-import {Message} from 'element-ui'
+import { getToken } from "./token";
+import { Message } from 'element-ui'
 
 const tokenKey = 'token'
 
@@ -18,9 +18,9 @@ axios.interceptors.request.use((config) => {
 //添加响应拦截器
 axios.interceptors.response.use((response) => {
     // 对响应数据做点什么
-    let {code,msg} = response.data;
+    let { code, msg } = response.data;
     // let {message} = response.data.data;
-    if(code !== 200){
+    if (code !== 20000) {
         Message({
             message: msg,
             type: 'warning',
@@ -28,7 +28,7 @@ axios.interceptors.response.use((response) => {
         })
     }
     return response;
-},err => {
+}, err => {
     // 对响应错误做点什么
     Message({
         message: '请求错误',

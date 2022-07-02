@@ -26,6 +26,18 @@
                         autocomplete="off"
                     ></el-input>
                 </el-form-item>
+                <el-form-item label="文件" prop="file">
+                    <el-upload
+                        ref="file"
+                        action=""
+                        class="upload-demo"
+                        :on-change="handleChange"
+                    >
+                        <el-button size="small" type="primary"
+                            >点击上传</el-button
+                        >
+                    </el-upload>
+                </el-form-item>
                 <el-form-item class="submit">
                     <el-button type="primary" @click="submitForm('loginForm')"
                         >登录</el-button
@@ -54,6 +66,7 @@ export default {
             loginForm: {
                 password: "",
                 account: "",
+                file: null,
             },
             // 登录的校验规则
             rules: {
@@ -75,10 +88,22 @@ export default {
                         trigger: "blur",
                     },
                 ],
+                file: [
+                    {
+                        message: "请上传文件",
+                        required: false,
+                        trigger: "change",
+                    },
+                ],
             },
         };
     },
     methods: {
+        handleChange(file, fileList) {
+            this.loginForm.file = file;
+            this.$refs.loginForm.validateField("file");
+            console.log(file, fileList, 1212123132);
+        },
         /**
          * @description 点击登录
          * @example submitForm('loginForm')
@@ -126,7 +151,6 @@ export default {
 }
 .login {
     width: 450px;
-    height: 300px;
     background-color: #e4fbff;
     text-align: center;
     border-radius: 6px;

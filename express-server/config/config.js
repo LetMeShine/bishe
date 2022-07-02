@@ -1,7 +1,7 @@
 const config = {
     port: process.env.PORT || 3300,
     database: {
-        database: 'loan',
+        database: 'myloan',
         user: 'root',
         password: '12345678',
         host: '127.0.0.1',

@@ -45,6 +45,7 @@ export default {
                 {
                     content: "手写promise",
                     timestamp: "2022-06-04",
+                    type: "success",
                     // color: "#0bbd87",
                 },
                 {

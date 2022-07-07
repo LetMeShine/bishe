@@ -23,6 +23,11 @@ export default {
             reverse: false,
             activities: [
                 {
+                    content: "看看webpack，并且熟练使用",
+                    timestamp: "2022-07-03",
+                    // color: "#0bbd87",
+                },
+                {
                     content: "手写vue-4",
                     timestamp: "2022-06-05",
                     // color: "#0bbd87",
@@ -38,8 +43,9 @@ export default {
                     // color: "#0bbd87",
                 },
                 {
-                    content: "手写vue-1",
-                    timestamp: "2022-06-05",
+                    content: "手写vue-1数据拦截",
+                    timestamp: "2022-07-07",
+                    type: "success",
                     // color: "#0bbd87",
                 },
                 {

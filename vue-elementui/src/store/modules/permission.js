@@ -11,9 +11,11 @@ import {constantRoutes, asyncRoutes} from '@/router'
  * @returns {Array} 过滤后的路由
  */
 function filterAsyncRouter(routes, name) {
-    let data = routes.filter(route => {
-        return route.meta && route.meta.roles && name.some(v => route.meta.roles.includes(v))
-    })
+    // let data = routes.filter(route => {
+    //     return route.meta && route.meta.roles && name.some(v => route.meta.roles.includes(v))
+    // })
+    let data  = routes
+    name
     return data;
 }
 

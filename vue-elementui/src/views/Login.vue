@@ -1,6 +1,6 @@
 <template>
     <div class="wapper">
-        <Learn />
+        <!-- <Learn /> -->
         <div class="login">
             <h1 class="title">信贷管理系统</h1>
             <el-form
@@ -26,7 +26,7 @@
                         autocomplete="off"
                     ></el-input>
                 </el-form-item>
-                <el-form-item label="文件" prop="file">
+                <!-- <el-form-item label="文件" prop="file">
                     <el-upload
                         ref="file"
                         action=""
@@ -37,7 +37,7 @@
                             >点击上传</el-button
                         >
                     </el-upload>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item class="submit">
                     <el-button type="primary" @click="submitForm('loginForm')"
                         >登录</el-button
@@ -52,10 +52,10 @@
 <script>
 import { login } from "@/api/http";
 import { setToken } from "../utils/token";
-import Learn from "./Learn";
+// import Learn from "./Learn";
 export default {
     name: "login",
-    components: { Learn },
+    // components: { Learn },
     data() {
         const validLogin = (rule, value, callback) => {
             let info = rule.field === "account" ? "请输入用户名" : "请输入密码";
@@ -66,7 +66,7 @@ export default {
             loginForm: {
                 password: "",
                 account: "",
-                file: null,
+                // file: null,
             },
             // 登录的校验规则
             rules: {

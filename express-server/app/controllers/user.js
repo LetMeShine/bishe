@@ -35,6 +35,7 @@ const userCtrl = {
         if (account && password) {
             let newPwd = crypto.md5(password);// MD5加密密码
             console.log(newPwd, '加密后的密码')
+            console.log(crypto.md5(password), '加密后的密码')
             userService.findUserByUsername(account, newPwd) // 查询用户名和密码
                 .then(data => {
                     if (data.length) {

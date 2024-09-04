@@ -4,7 +4,8 @@
 
 <script>
     import {init} from 'echarts'
-    import 'echarts/map/china'
+    import 'echarts/map/js/china'
+    // import './china'
     import {map} from './config'
     export default {
         data(){

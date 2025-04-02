@@ -267,3 +267,15 @@ getRealQuery(params)
 ```
 
 10. 善用全局事件总线通信，$ebus，尤其是地图的交互，使用的同一个地图，但是不同模块的交互不能同时出现，那就是需要清空其他的地方的地图交互了。
+
+11. 使用slot传参
+```js
+// 子组件person.vue
+<slot name="btn" :item="item" :index="index"></slot>
+
+// 父组件
+<person>
+	<template v-slot:btn="{ item, index }">
+	</template>
+</person>
+```
